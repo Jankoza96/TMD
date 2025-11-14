@@ -46,7 +46,7 @@ export const TaskList = ({
     setPageState({ key: paginationKey, page });
   };
 
-  if (filteredTasks.length === 0) {
+  if (!filteredTasks.length) {
     return (
       <div className={styles.emptyState}>
         <p className={styles.emptyMessage}>

@@ -31,6 +31,7 @@
 .priorityBar {
   width: 4px;
   flex-shrink: 0;
+  border-radius: $radius-lg 0 0 $radius-lg;
 }
 
 .priorityBar.high {

@@ -26,22 +26,16 @@ export const Calendar = ({ tasks, onTaskClick, currentFilter }: CalendarProps) =
 
   const getTasksForDay = (day: Date) => {
     return filteredTasks.filter((task) => {
-      if (!task.dueDate) return false;
-      if (task.status === 'Completed' && currentFilter !== 'completed') return false;
+      if (
+        !task.dueDate ||
+        (task.status === 'Completed' && currentFilter !== 'completed')
+      )
+        return false;
       return isSameDay(parseISO(task.dueDate), day);
     });
   };
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'High':
-        return 'high';
-      case 'Low':
-        return 'low';
-      default:
-        return 'normal';
-    }
-  };
+  const getPriorityColor = (priority: string) => priority.toLowerCase();
 
   const goToPreviousMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));

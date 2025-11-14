@@ -2,6 +2,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import styles from './About.module.scss';
 
+const FEATURES = [
+  'Advanced search with query syntax (priority:high AND tag:design)',
+  'Real-time focus load indicators',
+  'Dynamic due date countdowns',
+  'Calendar and list views',
+  'Tag-based organization',
+  'Dark mode support',
+  'Keyboard navigation',
+  'Undo functionality',
+];
+
 interface AboutProps {
   isOpen: boolean;
   onClose: () => void;
@@ -29,14 +40,9 @@ export const About = ({ isOpen, onClose }: AboutProps) => {
 
             <h2 className={styles.sectionTitle}>Features</h2>
             <ul className={styles.featuresList}>
-              <li>Advanced search with query syntax (priority:high AND tag:design)</li>
-              <li>Real-time focus load indicators</li>
-              <li>Dynamic due date countdowns</li>
-              <li>Calendar and list views</li>
-              <li>Tag-based organization</li>
-              <li>Dark mode support</li>
-              <li>Keyboard navigation</li>
-              <li>Undo functionality</li>
+              {FEATURES.map((feature, index) => (
+                <li key={index}>{feature}</li>
+              ))}
             </ul>
 
             <div className={styles.footer}>

@@ -106,7 +106,7 @@ export const parseQuery = (query: string): ParsedQuery => {
 };
 
 export const applyQuery = (tasks: Task[], parsedQuery: ParsedQuery): Task[] => {
-  if (parsedQuery.tokens.length === 0) {
+  if (!parsedQuery.tokens.length) {
     return tasks;
   }
 
