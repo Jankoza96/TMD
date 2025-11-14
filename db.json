@@ -4,7 +4,7 @@
       "taskId": "h8i9j0k1-2345-6789-0123-456789012345",
       "title": "Research New Technologies",
       "description": "Evaluate new frameworks for upcoming project",
-      "dueDate": "2025-11-13T17:00:00.000Z",
+      "dueDate": "2025-11-16T13:02:00.000Z",
       "priority": "Low",
       "status": "In Progress",
       "tags": [
@@ -19,7 +19,7 @@
       "taskId": "e4ce38cc-1438-43c7-ae43-025506abef30",
       "title": "Napravi sijalicu ",
       "description": "Moram da napravim vise sijalica ",
-      "dueDate": "2025-11-13T14:49:00.000Z",
+      "dueDate": "2025-11-17T10:20:00.000Z",
       "priority": "High",
       "status": "In Progress",
       "tags": [
@@ -37,7 +37,7 @@
       "taskId": "73302b1d-3634-47d6-b265-d2008a663245",
       "title": "test2",
       "description": "test2",
-      "dueDate": "2025-11-15T15:20:00.000Z",
+      "dueDate": "2025-11-16T03:36:00.000Z",
       "priority": "High",
       "status": "Completed",
       "tags": [
@@ -51,7 +51,7 @@
       "taskId": "5878d3b5-b8f6-4041-a3d7-4348ca06e050",
       "title": "Client Presentation",
       "description": "Prepare and deliver quarterly business review",
-      "dueDate": "2025-11-13T13:00:00.000Z",
+      "dueDate": "2025-11-16T14:00:00.000Z",
       "priority": "High",
       "status": "In Progress",
       "tags": [
