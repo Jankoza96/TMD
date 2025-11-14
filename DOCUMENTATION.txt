@@ -1,0 +1,273 @@
+ TMD - Technical Documentation
+
+ Solution Concept
+
+TMD is a modern task management application built with React 19 and TypeScript, designed to provide power users with advanced filtering capabilities while maintaining an intuitive interface for all users. The application emphasizes keyboard navigation, real-time feedback, and efficient task organization through tags, priorities, and dynamic filtering.
+
+ Architecture Overview
+
+ Technology Stack
+
+- Frontend Framework: React 19 with TypeScript
+- Build Tool: Vite
+- State Management: React Query for server state, Context API for global UI state
+- Form Management: Formik with Yup validation
+- Styling: SCSS Modules
+- Mock Backend: JSON Server
+- Date Handling: date-fns
+- Icons: Font Awesome
+
+ Key Architectural Decisions
+
+ 1. Component-Based Architecture with Reusable UI Components
+
+Decision: Created a dedicated `ui/` directory with reusable components (Button, Input, Tag, Pagination) rather than inline implementations.
+
+Rationale:
+
+- Promotes consistency across the application
+- Reduces code duplication
+- Easier maintenance and updates
+- Better testability
+
+Trade-offs:
+
+- Pros: Consistent UI, easier maintenance, reusable components
+- Cons: Slight overhead for simple use cases, requires upfront component design
+
+ 2. SCSS Modules Over Tailwind CSS
+
+Decision: Used SCSS Modules instead of utility-first CSS frameworks.
+
+Rationale:
+
+- Better control over styling and theming
+- Scoped styles prevent CSS conflicts
+- Easier to maintain complex component styles
+- Better support for CSS variables and theming
+
+Trade-offs:
+
+- Pros: Scoped styles, better theming support, more control
+- Cons: More verbose than utility classes, requires more CSS writing
+
+ 3. React Query for Data Fetching
+
+Decision: Used `@tanstack/react-query` for all API interactions instead of useState/useEffect patterns.
+
+Rationale:
+
+- Automatic caching and background refetching
+- Built-in loading and error states
+- Optimistic updates support
+- Reduces boilerplate code
+
+Trade-offs:
+
+- Pros: Automatic caching, loading states, error handling, optimistic updates
+- Cons: Additional dependency, learning curve for team members
+
+ 4. Advanced Query Parser for Search
+
+Decision: Implemented a custom query parser supporting field-specific searches and logical operators (AND, OR, NOT).
+
+Rationale:
+
+- Enables power users to create complex filters
+- Reduces need for multiple UI controls
+- Search bar acts as active filter display
+- Maintains backward compatibility with simple text search
+
+Trade-offs:
+
+- Pros: Powerful filtering, flexible queries, single input for all filters
+- Cons: Requires users to learn syntax, more complex parsing logic
+
+ 5. Context API for Global State
+
+Decision: Used React Context for theme, undo, and confirmation modals instead of a global state management library (Redux, Zustand).
+
+Rationale:
+
+- Simpler for small-scale global state
+- No additional dependencies
+- Built into React
+- Sufficient for current use cases
+
+Trade-offs:
+
+- Pros: No extra dependencies, simple API, built-in React
+- Cons: Can cause unnecessary re-renders if not optimized, harder to scale for complex state
+
+ 6. JSON Server for Mock Backend
+
+Decision: Used JSON Server instead of in-memory state or localStorage.
+
+Rationale:
+
+- Simulates real API behavior
+- RESTful endpoints
+- Easy to replace with real backend
+- Supports CRUD operations out of the box
+
+Trade-offs:
+
+- Pros: Realistic API simulation, easy to replace, supports CRUD
+- Cons: Requires separate process, not production-ready
+
+ 7. Separation of Context and Hooks
+
+Decision: Split context creation and provider components into separate files to satisfy Fast Refresh requirements.
+
+Rationale:
+
+- Fast Refresh requires files to export only components or only utilities
+- Better code organization
+- Follows React best practices
+
+Trade-offs:
+
+- Pros: Better Fast Refresh support, cleaner code organization
+- Cons: More files to manage, slightly more complex imports
+
+8. Integrated Pomodoro Focus Timer
+
+Decision: Implemented a built-in Pomodoro timer directly in the task management interface.
+
+Rationale:
+
+- Transforms the dashboard from passive organization tool to active productivity tool
+- Encourages users to enter and maintain focused work state ("Flow State")
+- Eliminates need to switch applications for time management
+- Automatically tracks work sessions and updates task status
+- Provides structured work-break cycles proven to enhance productivity
+
+Implementation:
+
+- Focus Button: Prominent "Start Focus" button appears on task cards and in task details modal
+- Timer Overlay: Minimalist, non-distracting overlay with circular progress indicator
+- Automatic Status Updates: Task status automatically changes to "In Progress" when timer starts
+- Completion Modal: After 25-minute focus session, presents options to:
+  - Mark task as complete
+  - Take a 5-minute break
+  - Continue with another focus session
+- Break Timer: 5-minute break timer with option to resume work
+- Tooltip: Hover tooltip on focus button explains Pomodoro technique
+
+Trade-offs:
+
+- Pros: Integrated workflow, encourages focused work, automatic status tracking, no app switching required
+- Cons: Additional complexity, requires timer state management, may distract if not used properly
+ Important Implementation Details
+
+ 1. Task ID vs Internal ID Handling
+
+Challenge: JSON Server uses `id` as primary key, but application uses `taskId` (UUID) for business logic.
+
+Solution:
+
+- API service fetches by `taskId` using query parameters
+- Extracts internal `id` for update/delete operations
+- Maintains `taskId` as the application's primary identifier
+
+Impact: Seamless integration with JSON Server while maintaining application's UUID-based identity system.
+
+ 2. Case-Insensitive Tag Handling
+
+Decision: Tags are compared case-insensitively while preserving original casing for display.
+
+Implementation: Uses `Map` with lowercase keys to ensure uniqueness while maintaining display format.
+
+Benefit: Prevents duplicate tags like "Development" and "development" while showing user's preferred casing.
+
+ 3. Debounced Search
+
+Decision: Implemented 300ms debounce for search input.
+
+Rationale: Reduces API calls and improves performance, especially with advanced query parsing.
+
+ 4. Pagination Strategy
+
+Decision: Client-side pagination with 10 items per page, resets on filter/search changes.
+
+Rationale:
+
+- Simple implementation
+- Fast for moderate dataset sizes
+- Better UX with instant page changes
+
+Limitation: May need server-side pagination for large datasets.
+
+ 5. Responsive Design Approach
+
+Decision: Mobile-first responsive design with breakpoint at 768px.
+
+Implementation:
+
+- Hamburger menu for sidebar on mobile
+- Bottom-sheet modals
+- Condensed task cards
+- Touch-friendly targets (min 44px)
+
+6. Focus Timer State Management
+
+Decision: Created dedicated `FocusTimerProvider` context for timer state management.
+
+Implementation:
+
+- Separate context from other global state
+- Manages timer countdown, pause/resume, and type (focus/break)
+- Integrates with task status updates
+- Handles timer completion callbacks
+
+Benefit: Clean separation of concerns, reusable timer logic, easy to extend with additional timer features.
+
+ Pros and Cons Summary
+
+ Pros
+
+1. Advanced Search Capabilities: Power users can create complex queries without UI clutter
+2. Integrated Productivity Tools: Pomodoro timer transforms app from organizer to active work tool
+3. Type Safety: TypeScript throughout reduces runtime errors
+4. Modern Stack: React 19, Vite, and latest patterns ensure maintainability
+5. Accessibility: Keyboard navigation, ARIA labels, semantic HTML
+6. Performance: Debouncing, pagination, and React Query caching optimize user experience
+7. Maintainability: Component-based architecture, SCSS modules, clear separation of concerns
+8. Developer Experience: Fast Refresh, TypeScript, clear error messages
+9. Flexibility: Easy to extend with new features, replace JSON Server with real backend
+10. Workflow Integration: Timer automatically updates task status, eliminating manual tracking
+
+ Cons
+
+1. Learning Curve: Advanced query syntax requires user education
+2. Client-Side Pagination: May not scale well for very large datasets (1000+ tasks)
+3. No Real Backend: JSON Server is for development only
+4. Context Re-renders: Could cause performance issues if state grows significantly
+5. Bundle Size: Multiple dependencies (React Query, Formik, Font Awesome) increase bundle size
+6. No Offline Support: Requires network connection for data operations
+7. Limited Real-time Features: No WebSocket support for collaborative features
+8. Timer Persistence: Timer state is lost on page refresh (could be improved with localStorage)
+
+ Future Considerations
+
+ Potential Improvements
+
+1. Server-Side Pagination: For handling large datasets efficiently
+2. Real Backend Integration: Replace JSON Server with REST/GraphQL API
+3. State Management: Consider Zustand or Redux Toolkit if state complexity grows
+4. Offline Support: Implement service workers and local caching
+5. Real-time Updates: Add WebSocket support for collaborative features
+6. Drag & Drop: Implement task reordering as originally planned
+7. Advanced Animations: Add more micro-interactions for better UX
+8. Testing: Add unit and integration tests
+9. Performance Monitoring: Add analytics and performance tracking
+10. Accessibility Audit: Comprehensive WCAG Level AA compliance review
+11. Timer Persistence: Save timer state to localStorage to survive page refreshes
+12. Timer Statistics: Track focus sessions, productivity metrics, and time spent per task
+13. Customizable Timer Durations: Allow users to set custom focus and break durations
+14. Timer Notifications: Browser notifications when timer completes
+15. Sound Effects: Optional audio cues for timer start/end
+
+ Conclusion
+
+TMD demonstrates a modern, scalable approach to task management applications. The architecture balances power-user features with usability, maintains code quality through TypeScript and component patterns, and provides a solid foundation for future enhancements. The decision to use advanced query parsing sets it apart from typical task management apps while maintaining backward compatibility with simple search patterns. The integrated Pomodoro timer transforms the application from a passive organizational tool into an active productivity companion, encouraging users to maintain focused work sessions without switching between applications.

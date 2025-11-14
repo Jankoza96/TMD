@@ -1,0 +1,135 @@
+@use '../../../styles/variables.module.scss' as *;
+
+.pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: $spacing-md $spacing-lg;
+  border-top: 1px solid var(--border);
+  background-color: var(--bg-secondary);
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}
+
+.info {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.pageButton {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: $radius-md;
+  padding: $spacing-xs $spacing-sm;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  transition: all $transition-fast;
+  min-width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover:not(:disabled) {
+    background-color: var(--bg-tertiary);
+    border-color: var(--priority-normal);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--priority-normal);
+    outline-offset: 2px;
+  }
+
+  svg {
+    width: 0.875em;
+    height: 0.875em;
+  }
+}
+
+.pageNumbers {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.pageNumber {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: $radius-md;
+  padding: $spacing-xs $spacing-sm;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all $transition-fast;
+  min-width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: var(--bg-tertiary);
+    border-color: var(--priority-normal);
+  }
+
+  &.active {
+    background-color: var(--priority-normal);
+    color: white;
+    border-color: var(--priority-normal);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--priority-normal);
+    outline-offset: 2px;
+  }
+}
+
+.ellipsis {
+  padding: $spacing-xs;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  min-width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .pagination {
+    padding: $spacing-sm $spacing-md;
+    gap: $spacing-sm;
+  }
+
+  .info {
+    font-size: 0.8125rem;
+  }
+
+  .pageButton,
+  .pageNumber {
+    min-width: 32px;
+    height: 32px;
+    font-size: 0.8125rem;
+  }
+
+  .controls {
+    gap: $spacing-xs;
+  }
+}

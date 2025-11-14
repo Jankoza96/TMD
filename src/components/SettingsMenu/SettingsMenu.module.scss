@@ -1,0 +1,87 @@
+@use '../../styles/variables.module.scss' as *;
+
+.settingsMenu {
+  position: fixed;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: $radius-lg;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 240px;
+  padding: $spacing-xs;
+  z-index: 1000;
+  animation: slideDown $transition-fast;
+  overflow: hidden;
+}
+
+.menuItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-sm $spacing-md;
+  border: none;
+  background: none;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  text-align: left;
+  cursor: pointer;
+  border-radius: $radius-md;
+  transition: background-color $transition-fast;
+  min-height: 44px;
+
+  &:hover {
+    background-color: var(--bg-tertiary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--priority-normal);
+    outline-offset: -2px;
+  }
+
+  &.danger {
+    color: #ef4444;
+
+    &:hover {
+      background-color: rgba(239, 68, 68, 0.1);
+    }
+  }
+}
+
+.menuIcon {
+  width: 16px;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.menuLabel {
+  flex: 1;
+  font-weight: 500;
+}
+
+.menuValue {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .settingsMenu {
+    min-width: 200px;
+  }
+
+  .menuItem {
+    font-size: 0.8125rem;
+    padding: $spacing-xs $spacing-sm;
+  }
+}

@@ -1,0 +1,115 @@
+@use '../../styles/variables.module.scss' as *;
+
+.focusButtonWrapper {
+  position: relative;
+  display: inline-block;
+
+  &:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.focusButton {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm $spacing-md;
+  background: linear-gradient(135deg, var(--priority-high), #dc2626);
+  color: white;
+  border: none;
+  border-radius: $radius-md;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-fast;
+  min-height: 36px;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+    background: linear-gradient(135deg, #dc2626, var(--priority-high));
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &.active {
+    background: linear-gradient(135deg, var(--priority-normal), #3b82f6);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+  }
+
+  svg {
+    width: 0.875em;
+    height: 0.875em;
+  }
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + $spacing-sm);
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: $radius-md;
+  padding: $spacing-md;
+  min-width: 280px;
+  max-width: 320px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity $transition-fast, visibility $transition-fast,
+    transform $transition-fast;
+  z-index: 10000;
+  pointer-events: none;
+  white-space: normal;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--bg-primary);
+  }
+
+  strong {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: $spacing-xs;
+  }
+
+  p {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .tooltip {
+    min-width: 240px;
+    max-width: 280px;
+    left: auto;
+    right: 0;
+    transform: translateY(-5px);
+
+    &::after {
+      left: auto;
+      right: $spacing-md;
+      transform: translateX(0);
+    }
+  }
+}

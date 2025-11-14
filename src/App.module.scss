@@ -1,0 +1,45 @@
+@use './styles/variables.module.scss' as *;
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+}
+
+.mainContent {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.contentArea {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: var(--bg-primary);
+  transition: margin-left $transition-normal;
+  min-height: 0;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .mainContent {
+    position: relative;
+  }
+
+  .contentArea {
+    width: 100%;
+  }
+}

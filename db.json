@@ -1,0 +1,65 @@
+{
+  "tasks": [
+    {
+      "taskId": "h8i9j0k1-2345-6789-0123-456789012345",
+      "title": "Research New Technologies",
+      "description": "Evaluate new frameworks for upcoming project",
+      "dueDate": "2025-11-13T17:00:00.000Z",
+      "priority": "Low",
+      "status": "In Progress",
+      "tags": [
+        "Research"
+      ],
+      "createdAt": "2024-11-06T10:00:00Z",
+      "updatedAt": "2025-11-13T19:00:39.670Z",
+      "id": "e48e"
+    },
+    {
+      "id": "14d3",
+      "taskId": "e4ce38cc-1438-43c7-ae43-025506abef30",
+      "title": "Napravi sijalicu ",
+      "description": "Moram da napravim vise sijalica ",
+      "dueDate": "2025-11-13T14:49:00.000Z",
+      "priority": "High",
+      "status": "In Progress",
+      "tags": [
+        "sijalica",
+        "mora",
+        "pozuri",
+        "development",
+        "Development"
+      ],
+      "createdAt": "2025-11-13T14:49:30.693Z",
+      "updatedAt": "2025-11-13T18:53:30.239Z"
+    },
+    {
+      "id": "abe2",
+      "taskId": "73302b1d-3634-47d6-b265-d2008a663245",
+      "title": "test2",
+      "description": "test2",
+      "dueDate": "2025-11-15T15:20:00.000Z",
+      "priority": "High",
+      "status": "Completed",
+      "tags": [
+        "test"
+      ],
+      "createdAt": "2025-11-13T15:20:22.068Z",
+      "updatedAt": "2025-11-13T19:02:31.265Z"
+    },
+    {
+      "id": "3db7",
+      "taskId": "5878d3b5-b8f6-4041-a3d7-4348ca06e050",
+      "title": "Client Presentation",
+      "description": "Prepare and deliver quarterly business review",
+      "dueDate": "2025-11-13T13:00:00.000Z",
+      "priority": "High",
+      "status": "In Progress",
+      "tags": [
+        "Meeting",
+        "Presentation"
+      ],
+      "createdAt": "2025-11-13T15:31:00.662Z",
+      "updatedAt": "2025-11-13T15:31:00.662Z"
+    }
+  ]
+}

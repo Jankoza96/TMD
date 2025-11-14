@@ -1,0 +1,54 @@
+@use '../../styles/variables.module.scss' as *;
+
+.taskListContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  animation: fadeIn $transition-normal;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
+.emptyState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: $spacing-xl;
+}
+
+.emptyMessage {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin: 0;
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .taskList {
+    padding: $spacing-md $spacing-sm;
+    gap: $spacing-sm;
+  }
+
+  .emptyState {
+    padding: $spacing-lg $spacing-md;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .emptyMessage {
+    font-size: 1rem;
+  }
+}

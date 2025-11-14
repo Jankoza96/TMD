@@ -1,0 +1,293 @@
+@use '../../styles/variables.module.scss' as *;
+
+.calendar {
+  padding: $spacing-lg;
+  animation: fadeIn $transition-normal;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-xl;
+  gap: $spacing-md;
+}
+
+.navButton {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: $radius-md;
+  padding: $spacing-sm $spacing-md;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  transition: all $transition-fast;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: var(--bg-secondary);
+    border-color: var(--priority-normal);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--priority-normal);
+    outline-offset: 2px;
+  }
+}
+
+.monthTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.todayButton {
+  background-color: var(--priority-normal);
+  color: white;
+  border: none;
+  border-radius: $radius-md;
+  padding: $spacing-sm $spacing-lg;
+  cursor: pointer;
+  font-weight: 500;
+  transition: opacity $transition-fast;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--priority-normal);
+    outline-offset: 2px;
+  }
+}
+
+.calendarGrid {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: $radius-lg;
+  overflow: hidden;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.weekdayHeader {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border);
+}
+
+.weekday {
+  padding: $spacing-md;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.dayCell {
+  min-height: 120px;
+  padding: $spacing-sm;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  transition: background-color $transition-fast;
+
+  &:nth-child(7n) {
+    border-right: none;
+  }
+
+  &:hover {
+    background-color: var(--bg-tertiary);
+  }
+
+  &.otherMonth {
+    opacity: 0.3;
+  }
+
+  &.today {
+    background-color: rgba(59, 130, 246, 0.1);
+    border: 2px solid var(--priority-normal);
+  }
+}
+
+.dayNumber {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.tasksList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.taskItem {
+  width: 100%;
+  min-height: 24px;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: all $transition-fast;
+  display: flex;
+  align-items: center;
+  border-left: 3px solid;
+  background-color: var(--bg-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &:hover {
+    transform: translateX(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  &.high {
+    border-left-color: var(--priority-high);
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+
+  &.normal {
+    border-left-color: var(--priority-normal);
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+
+  &.low {
+    border-left-color: var(--priority-low);
+    background-color: rgba(34, 197, 94, 0.1);
+  }
+}
+
+.taskTitle {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.moreTasks {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .calendar {
+    padding: $spacing-sm;
+  }
+
+  .header {
+    flex-wrap: wrap;
+    margin-bottom: $spacing-md;
+    gap: $spacing-sm;
+  }
+
+  .navButton {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    padding: $spacing-xs;
+  }
+
+  .monthTitle {
+    font-size: 1.125rem;
+  }
+
+  .todayButton {
+    padding: $spacing-xs $spacing-md;
+    font-size: 0.875rem;
+  }
+
+  .calendarGrid {
+    border-radius: $radius-md;
+  }
+
+  .weekday {
+    padding: $spacing-xs $spacing-sm;
+    font-size: 0.75rem;
+  }
+
+  .dayCell {
+    min-height: 50px;
+    padding: $spacing-xs;
+    gap: 2px;
+  }
+
+  .dayNumber {
+    font-size: 0.6875rem;
+  }
+
+  .taskItem {
+    min-height: 20px;
+    padding: 2px $spacing-xs;
+    font-size: 0.6875rem;
+  }
+
+  .taskTitle {
+    font-size: 0.6875rem;
+  }
+
+  .moreTasks {
+    font-size: 0.625rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar {
+    padding: $spacing-xs;
+  }
+
+  .header {
+    margin-bottom: $spacing-sm;
+  }
+
+  .monthTitle {
+    font-size: 1rem;
+  }
+
+  .weekday {
+    padding: $spacing-xs;
+    font-size: 0.6875rem;
+  }
+
+  .dayCell {
+    min-height: 40px;
+    padding: 2px;
+  }
+
+  .dayNumber {
+    font-size: 0.625rem;
+  }
+}

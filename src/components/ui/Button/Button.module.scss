@@ -1,0 +1,109 @@
+@use '../../../styles/variables.module.scss' as *;
+
+.button {
+  border: none;
+  border-radius: $radius-md;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all $transition-fast;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  font-family: inherit;
+
+  svg {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--priority-normal);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.sm {
+  padding: $spacing-xs $spacing-md;
+  font-size: 0.875rem;
+}
+
+.md {
+  padding: $spacing-sm $spacing-lg;
+  font-size: 1rem;
+}
+
+.lg {
+  padding: $spacing-md $spacing-xl;
+  font-size: 1.125rem;
+}
+
+.primary {
+  background-color: var(--priority-normal);
+  color: white;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+.secondary {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+
+  &:hover:not(:disabled) {
+    background-color: var(--bg-tertiary);
+  }
+}
+
+.danger {
+  background-color: var(--priority-high);
+  color: white;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+}
+
+.ghost {
+  background-color: transparent;
+  color: var(--text-primary);
+
+  &:hover:not(:disabled) {
+    background-color: var(--bg-secondary);
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .button {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+
+  .sm {
+    min-height: 36px;
+    padding: $spacing-xs $spacing-sm;
+    font-size: 0.8125rem;
+  }
+
+  .md {
+    padding: $spacing-sm $spacing-md;
+  }
+
+  .lg {
+    padding: $spacing-md $spacing-lg;
+    font-size: 1rem;
+  }
+}
