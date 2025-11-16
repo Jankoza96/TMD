@@ -24,9 +24,6 @@ export const FocusButton = ({ taskId, onStartFocus }: FocusButtonProps) => {
       <button
         className={`${styles.focusButton} ${isActive ? styles.active : ''}`}
         onClick={handleClick}
-        aria-label="Start focus session"
-        title="Start Focus Session (Pomodoro Technique)"
-        data-tooltip="Start a 25-minute focused work session using the Pomodoro Technique. The timer will automatically set your task status to 'In Progress' and help you maintain deep focus."
       >
         <FontAwesomeIcon icon={faPlay} />
         <span>Start Focus</span>
